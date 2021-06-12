@@ -17,6 +17,8 @@ const ExpenseForm = (props) => {
         date: ''
     });
 
+    const [showFormcomp, setShowFormComp] = useState(false);
+
     const titleChangeHandler = (event) => {
 
         // we can use this, but this not right approach for user single state
@@ -34,13 +36,13 @@ const ExpenseForm = (props) => {
     const amountChangeHandler = (event) => {
         setUserInput((prevState) => {
             return { ...prevState, amount: event.target.value }
-        })
+        });
     }
 
     const dateChangeHandler = (event) => {
         setUserInput((prevState) => {
             return { ...prevState, date: event.target.value }
-        })
+        });
     }
 
     const submitHandler = (event) => {
@@ -55,7 +57,25 @@ const ExpenseForm = (props) => {
         setUserInput({ title: '', amount: '', date: '' });
     }
 
+    const showHideFormHandler = () => {
+        setShowFormComp(true);
+    }
+
+    const hideFormHandler = () => {
+        setShowFormComp(false);
+    }
+
+    if (showFormcomp === false) {
+        return (
+            <div className="new-expense__control">
+                <button onClick={showHideFormHandler}> Add New Expense</button>
+            </div>
+        );
+    }
+
+
     return (
+
         <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__controls">
@@ -81,7 +101,9 @@ const ExpenseForm = (props) => {
             </div>
 
             <div className="new-expense__control">
+                <button onClick={hideFormHandler}> Cancel</button>
                 <button type='submit'> Add Expense</button>
+
             </div>
         </form>
     );

@@ -3,6 +3,7 @@ import ExpensesFilter from './components/ExpenseFilter/ExpensesFilter';
 import ExpensesList from './components/Expenses/ExpensesList';
 import NewExpense from './components/NewExpense/NewExpense'
 import Card from './components/UI/Card';
+import ExpensesChart from './components/Expenses/ExpensesChart';
 
 import "./components/Expenses/Expense.css"
 
@@ -22,7 +23,7 @@ const App = () => {
   const filterChangeHandler = (selectedYear) => {
     // console.log(typeof (expenses[0].date.getFullYear().toString()), typeof (selectedYear));
     setFilteredYear(selectedYear);
-    console.log(expenses.filter((fileteredExp) => fileteredExp.date.getFullYear() === selectedYear));
+    //console.log(expenses.filter((fileteredExp) => fileteredExp.date.getFullYear() === selectedYear));
   }
 
   const filteredExp = expenses.filter((filExp) => {
@@ -36,7 +37,7 @@ const App = () => {
         <ExpensesFilter
           onChangeFilter={filterChangeHandler}
           selectedYear={filteredYear} />
-
+        <ExpensesChart expenses={filteredExp} />
         <ExpensesList item={filteredExp} />
 
       </Card>
